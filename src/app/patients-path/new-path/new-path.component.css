@@ -1,0 +1,117 @@
+#inputedPatientsID{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    color: snow;
+    position: relative;
+    top: 80px;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+}
+
+#table{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    position: relative;
+    top: 110px;
+    text-align: center;
+    width: 900px;
+    background-color: rgb(1, 1, 48);
+    padding-bottom: 30px;
+    display: none;
+    width: 64%;
+    margin-left: 22%;
+    margin-right: 22%;
+}
+
+#headerRow{
+    font-size: 20px;
+    background-color: rgb(1, 1, 48);
+}
+
+#startDateHeader{
+    color: rgb(221, 22, 195);
+    width: 200px;
+}
+
+#endDateHeader{
+    color: rgb(0, 174, 255);
+    width: 200px;
+}
+
+#cityHeader{
+    color: yellow;
+    width: 200px;
+}
+
+#locationHeader{
+    color: rgb(85, 202, 31);
+    width: 200px;
+}
+
+.input{
+    border-width: 2px;
+    height: 25px;
+    width: 200px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: snow;
+    background-color: rgb(1, 1, 48);
+    border-color: snow;
+    position: inherit;
+}
+
+#startDate{
+    border-color: rgb(221, 22, 195);
+    width: 200px;
+}
+
+#endDate{
+    border-color: rgb(0, 174, 255);
+    width: 200px;
+}
+
+#city{
+    height: 23px;
+    border-color: yellow;
+    width: 200px;
+}
+
+#location{
+    height: 23px;
+    border-color:rgb(85, 202, 31);
+    width: 200px;
+}
+
+#addNewRow{
+    height: 29px;
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: snow;
+    background-color: rgb(1, 1, 48);
+    border-width: 2px;
+    border-color: snow;
+    position: inherit;
+}
+
+#button{
+    background-color: rgb(1, 1, 48);
+    width: 100px;
+}
+#switchPatient{
+    height: 30px;
+    width: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: snow;
+    background-color: rgba(2, 2, 68, 0.521);
+    border-width: 2px;
+    border-color: snow;
+    margin-left: 40%;
+    margin-right: 40%;
+    position: relative;
+    top: 100px;
+    display: none;
+}

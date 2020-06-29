@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <app-title></app-title>
+        <app-new-path></app-new-path>
+<table id="dataTable">
+    <tbody>
+        <tr *ngFor="let path of patient.paths">
+            <td id="id" #id style="display: none;">{{path.id}}</td>
+            <td>{{path.startDate}}</td>
+            <td>{{path.endDate}}</td>
+            <td>{{path.city}}</td>
+            <td>{{path.locationC}}</td>
+            <td class="deleted"><input type="button" (click)="deletePath(id.value)">X</td>
+        </tr>
+    </tbody>
+</table>
+    </body>
+</html>

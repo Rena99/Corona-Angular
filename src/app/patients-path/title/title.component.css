@@ -1,0 +1,10 @@
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 65px;
+    color: snow;
+    margin: 0 auto;
+    width: 650px;
+    text-align: center; 
+    position: relative; 
+    top: 50px;
+}

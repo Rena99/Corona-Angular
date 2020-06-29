@@ -1,0 +1,44 @@
+#dataTable{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    position: relative;
+    top: 80px;
+    color: snow;
+    display: none;
+    width: 64%;
+    margin-left: 22%;
+    margin-right: 22%;
+}
+
+.row{
+    margin: 0 auto;
+}
+
+.deleted{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 29px;
+    width: 100px;
+    font-size: 15px;
+    color: snow;
+    background-color: rgba(2, 2, 68, 0.363);
+    border-width: 2px;
+    border-color: snow;
+    position: inherit;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(51, 51, 80);
+}
+
+tr:nth-child(odd) {
+    background-color:  rgb(35, 35, 82);
+}
+
+.cell{
+    width: 205px;
+    border-width: 2px;
+    border-color: snow;
+}
+
+

@@ -1,0 +1,11 @@
+<html>
+<body >
+    <app-title></app-title>
+    <div id="inputID">
+        <input id="patientID" #patientID type="number" placeholder="input your ID" [(ngModel)]="patient.id">
+        <input id="PasswordPatient" #PasswordPatient type="number" placeholder="input your password" [(ngModel)]="patient.password">
+        <input id="patientName" #patientName type="text" placeholder="input your Name" [(ngModel)]="patient.pName">
+        <input id="addUser" type="button" value="OK" (click)="addAPatient(patientID.value, PasswordPatient.value, patientName.value)">
+    </div>
+</body>
+</html>
