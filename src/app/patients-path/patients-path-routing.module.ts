@@ -12,9 +12,9 @@ import { PatientsPathsComponent } from './patients-paths/patients-paths.componen
   imports: [
     RouterModule.forChild([
       {path:'newPatient', component: NewPatientComponent},
+      {path: 'newPath', component: NewPathComponent},
+      {path: 'patientsPaths', component:PatientsPathsComponent},
       {path: '', redirectTo: 'newPatient', pathMatch: 'full'},
-      {path: 'newPth', component: NewPathComponent},
-      {path: 'patientsPaths', component:PatientsPathsComponent}
     ]),
     CommonModule
   ]

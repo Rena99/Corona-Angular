@@ -9,39 +9,53 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-patient.component.css']
 })
 export class NewPatientComponent implements OnInit {
-  patient: Patient=new Patient(0, '', 0, []);
+  patient: Patient=new Patient();
+  errorMessage: any;
   constructor(private httpContext: HttpContextService, private router: Router) { }
 
   ngOnInit(): void {
+    this.htmlChanges();
   }
-  urlPath = "https://localhost:44381/patient";
+  //urlPath = "https://localhost:44381/patient";
+  urlPath="http://localhost:52459/patient";
 
 htmlChanges() {
-  this.patient.password = 0;
-  this.patient.pName = '';
+  this.patient.passwordPatient = 0;
+  this.patient.patientName = '';
   this.patient.id = 0;
 }
 
 addAPatient(patientID, patientPassword, patientName) {
-  this.htmlChanges();
- this.router.navigate(['./patientsPaths']);
-    // let url = this.urlPath + "/" + this.patient.id + "/" + this.patient.password + "/" + this.patient.pName;
-    // this.httpContext.getPatient(url).subscribe((data: Patient) => {
-    //     if (data.id !== 0) {
-    //       this.patient=data;
-    //       this.httpContext.patient=this.patient;
-    //       this.router.navigate(['./newPath']);
-    //     }
-    //     else{
-    //       this.AddNewPatientToDB(this.patient);
-    //     }
-    //   })
-}
+    let url = this.urlPath + "/" + patientID + "/" + patientPassword + "/" + patientName;
+    this.httpContext.getPatient(url).subscribe({
+      next: patient=>{
+        if(patient===null){
+          this.AddNewPatientToDB(this.patient);
+        }
+        else{
+        this.patient=patient;
+        this.router.navigate(['./patientsPaths']);
+        this.httpContext._patient=this.patient;
+        }
+      },
+      error: err=>{
+        this.errorMessage=err;
+        console.log(this.errorMessage);
+      }
+    })
+  }
 
-AddNewPatientToDB(patient) {
+AddNewPatientToDB(patient:Patient) {
   let url = this.urlPath;
-  this.httpContext.addPatient(url, patient).subscribe();
-  this.addAPatient (patient.id, patient.password, patient.name);
+  this.httpContext.addPatient(url, patient).subscribe({
+    next: empty=>{
+      this.addAPatient(patient.id, patient.passwordPatient, patient.patientName);
+    },
+    error: err=>{
+      this.errorMessage=err;
+      console.log(this.errorMessage);
+    }
+  });
 }
 
 

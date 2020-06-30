@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-path.component.css']
 })
 export class NewPathComponent implements OnInit {
-  path: PatientsPath;
+  path: PatientsPath=new PatientsPath();
   patient: Patient;
   urlPath = "https://localhost:44381/patient";
   constructor(private httpContext: HttpContextService, private router:Router){}
@@ -23,9 +23,9 @@ export class NewPathComponent implements OnInit {
   };
       
   addANewObjectToPatientPathArray() {
-    let url=this.urlPath  + "/" + this.patient.cookie.substring(6);
-    this.httpContext.addPath(url, this.path, this.patient.cookie).subscribe((data: void)=>{
-            this.patient.paths.push(this.path);
+    let url=this.urlPath  + "/" + this.patient.token.substring(6);
+    this.httpContext.addPath(url, this.path, this.patient.token).subscribe((data: void)=>{
+            this.patient.path.push(this.path);
             this.httpContext.patient=this.patient;
             this.deleteInputItems();
           });

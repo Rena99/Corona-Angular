@@ -40,5 +40,8 @@ tr:nth-child(odd) {
     border-width: 2px;
     border-color: snow;
 }
+html{
+    background-color: rgb(1, 1, 48);
+}
 
 

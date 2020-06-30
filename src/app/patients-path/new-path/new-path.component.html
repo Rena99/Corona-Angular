@@ -1,6 +1,16 @@
 <html>
+    <app-title></app-title>
+
     <body>
-        <h3 id="inputedPatientsID" [innerHTML]=patient.pName></h3>
+        <form>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date">
+                <input matEndDate placeholder="End date">
+              </mat-date-range-input>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              
+        </form>
+        <h3 id="inputedPatientsID" [innerHTML]=patient.patientName></h3>
         <table id="table">
             <tr id="headerRow">
                 <th id="startDateHeader">Start Date</th>
@@ -14,7 +24,7 @@
                 <td><input id="endDate" #endDate class="input" type="datetime-local" [(ngModel)]="path.endDate"></td>
                 <td><input id="city" #city class="input" type="text" [(ngModel)]="path.city"></td>
                 <td><input id="location" #location class="input" type="text" [(ngModel)]="path.locationC"></td>
-                <td class="button"><input id="addNewRow" type="button" value="Add" (click)="addANewObjectToPatientPathArray()""></td>
+                <td class="button"><input id="addNewRow" type="button" value="Add" (click)="addANewObjectToPatientPathArray()"></td>
             </tr>
         </table>
         <input id="switchPatient" type="button" value="Switch Patient" (click)="switchPatient()">

@@ -8,6 +8,7 @@ import {NewPathComponent} from './new-path/new-path.component';
 import { PatientsPathsComponent } from './patients-paths/patients-paths.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     PatientsPathRoutingModule,
     HttpContextModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule
   ]
 })
 export class PatientsPathModule { }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {PatientsPathModule} from 'src/app/patients-path/patients-path.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import {PatientsPathModule} from 'src/app/patients-path/patients-path.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PatientsPathModule
+    PatientsPathModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,19 +8,22 @@ import { HttpContextService } from 'src/app/http-context/http-context.service';
   styleUrls: ['./patients-paths.component.css']
 })
 export class PatientsPathsComponent implements OnInit {
-  patient:Patient;
+  patient:Patient=new Patient();
   urlPath = "https://localhost:44381/patient";
   constructor(private httpContext: HttpContextService) { }
 deletePath(id:number){
-  let url=this.urlPath  + "/" + this.patient.cookie.substring(6);
-  this.httpContext.deletePath(url, this.patient.cookie).subscribe(()=>{
-  let path=this.patient.paths.findIndex(p=>p.id==id);
-  this.patient.paths.splice(path, 1);
+  let url=this.urlPath  + "/" + this.patient.token.substring(6);
+  this.httpContext.deletePath(url, this.patient.token).subscribe(()=>{
+  let path=this.patient.path.findIndex(p=>p.id==id);
+  this.patient.path.splice(path, 1);
   this.httpContext.patient=this.patient;
   });
 }
   ngOnInit(): void {
-    this.patient=this.httpContext.patient;
+    console.log(this.httpContext._patient);
+    console.log(this.httpContext.patient);
+    this.patient=this.httpContext._patient;
+    console.log(this.patient.path)
   }
 
 }

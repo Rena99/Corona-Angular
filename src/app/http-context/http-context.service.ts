@@ -17,8 +17,8 @@ public get patient(): Patient {
 public set patient(patient: Patient) {
   this._patient = patient;
 }
-getPatient(url) {
-  return this.http.get<Patient>(url);
+getPatient(url) :Observable<Patient>{
+  return this.http.get<Patient>(url).pipe();
 }
 addPatient(url,patient): Observable<void> {
   const httpOptions = {
@@ -27,7 +27,7 @@ addPatient(url,patient): Observable<void> {
     })
   };
   const requestBody = JSON.stringify(patient);
-  return this.http.post<void>(url, requestBody, httpOptions);
+  return this.http.post<void>(url, requestBody, httpOptions).pipe();
 }
 addPath(url, path, cookie): Observable<void> {
   const httpOptions = {
