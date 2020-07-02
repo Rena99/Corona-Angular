@@ -1,8 +1,7 @@
-export class PatientsPath {
-    public id: number
-    public startDate: Date
-    public endDate: Date
-    public city: string
-    public locationC: string
-    
+export interface PatientsPath {
+     id: number
+     startDate: Date
+     endDate: Date
+     city: string
+     locationC: string
 }; 

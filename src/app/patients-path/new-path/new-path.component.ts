@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { PatientsPath } from 'src/app/Classes/patientsPath';
 import { Patient } from 'src/app/Classes/patient';
 import { HttpContextService } from 'src/app/http-context/http-context.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, NgForm, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-new-path',
@@ -10,32 +11,64 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-path.component.css']
 })
 export class NewPathComponent implements OnInit {
-  path: PatientsPath=new PatientsPath();
-  patient: Patient;
-  urlPath = "https://localhost:44381/patient";
-  constructor(private httpContext: HttpContextService, private router:Router){}
+  formGroup: FormGroup;
+  path={} as PatientsPath;
+  patient={}as Patient;
+  urlPath="http://localhost:52459/patient";
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
+  @Output() pathAdded: EventEmitter<number>=new EventEmitter<number>();
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      'city': [null, Validators.required],
+      'location': [null, Validators.required],
+      'date': [Validators.required],
+      'validate': ''
+    });
+  }
+
+  get city() {
+    return this.formGroup.get('city') as FormControl
+  }
+
+  onSubmit(location, city) {
+    this.addANewObjectToPatientPathArray(city, location);
+  }
+
+  
+  
+  constructor(private formBuilder: FormBuilder, private httpContext: HttpContextService, private router: Router) { }
 
   deleteInputItems() {
-          this.path.city = '';
-          this.path.endDate = null;
-          this.path.locationC = '';
-          this.path.startDate=null;
+    this.ngOnInit();
   };
-      
-  addANewObjectToPatientPathArray() {
-    let url=this.urlPath  + "/" + this.patient.token.substring(6);
-    this.httpContext.addPath(url, this.path, this.patient.token).subscribe((data: void)=>{
-            this.patient.path.push(this.path);
-            this.httpContext.patient=this.patient;
-            this.deleteInputItems();
-          });
+
+  addANewObjectToPatientPathArray(city, location) {
+    this.path.startDate = this.range.controls.start.value;
+    this.path.endDate = this.range.controls.end.value;
+    this.path.city = city;
+    this.path.locationC = location;
+    let url = this.urlPath + "/" + this.patient.id;
+    this.httpContext.addPath(url, this.path, this.patient.token).subscribe({
+      next: path => {
+        console.log(path)
+        this.patient.path.push(path);
+        this.httpContext._patient = this.patient;
+        this.deleteInputItems();
+        this.pathAdded.emit(path.id);
+      },
+      error: err => {
+        console.log(err);
+      }
+
+    });
   };
-  switchPatient() {
-    this.router.navigate(['./newPatient']);
-}
 
   ngOnInit(): void {
-    this.patient=this.httpContext.patient;
+    this.patient = this.httpContext._patient;
+    this.createForm();
   }
 
 }

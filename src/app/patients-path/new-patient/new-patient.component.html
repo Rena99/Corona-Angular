@@ -1,11 +1,37 @@
-<html>
-<body >
-    <app-title></app-title>
-    <div id="inputID">
-        <input id="patientID" #patientID type="number" placeholder="input your ID" [(ngModel)]="patient.id">
-        <input id="PasswordPatient" #PasswordPatient type="number" placeholder="input your password" [(ngModel)]="patient.passwordPatient">
-        <input id="patientName" #patientName type="text" placeholder="input your Name" [(ngModel)]="patient.patientName">
-        <input id="addUser" type="button" value="OK" (click)="addAPatient(patientID.value, PasswordPatient.value, patientName.value)">
-    </div>
-</body>
-</html>
+<div style="text-align: center;">
+<mat-card class="example-card" style="display: inline-block; text-align: center; width: 70;" >
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ID" [(ngModel)]="id" name="id" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="login()" color="primary">Login</button>
+  </mat-card-actions>
+</mat-card>
+</div>

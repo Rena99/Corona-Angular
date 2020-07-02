@@ -9,8 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-patient.component.css']
 })
 export class NewPatientComponent implements OnInit {
-  patient: Patient=new Patient();
+  patient={} as Patient;
   errorMessage: any;
+  
+username: string;
+password: string;
+id: string;
   constructor(private httpContext: HttpContextService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,8 +29,11 @@ htmlChanges() {
   this.patient.id = 0;
 }
 
-addAPatient(patientID, patientPassword, patientName) {
-    let url = this.urlPath + "/" + patientID + "/" + patientPassword + "/" + patientName;
+login() {
+  this.patient.id=parseInt(this.id);
+  this.patient.patientName=this.username;
+  this.patient.passwordPatient=parseInt(this.password);
+    let url = this.urlPath + "/" + this.patient.id + "/" + this.patient.passwordPatient + "/" + this.patient.patientName;
     this.httpContext.getPatient(url).subscribe({
       next: patient=>{
         if(patient===null){
@@ -34,7 +41,7 @@ addAPatient(patientID, patientPassword, patientName) {
         }
         else{
         this.patient=patient;
-        this.router.navigate(['./patientsPaths']);
+        this.router.navigate(['./paths']);
         this.httpContext._patient=this.patient;
         }
       },
@@ -49,7 +56,7 @@ AddNewPatientToDB(patient:Patient) {
   let url = this.urlPath;
   this.httpContext.addPatient(url, patient).subscribe({
     next: empty=>{
-      this.addAPatient(patient.id, patient.passwordPatient, patient.patientName);
+      this.login();
     },
     error: err=>{
       this.errorMessage=err;

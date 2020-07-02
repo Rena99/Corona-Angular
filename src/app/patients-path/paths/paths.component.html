@@ -1,0 +1,12 @@
+<body style="text-align: center;">
+    <div class="row" style="display: inline-block;">
+        <h1>Report Your Path</h1>
+        <h3 id="inputedPatientsID">Welcome {{patient.patientName}}</h3>
+        <div>
+            <app-new-path (pathAdded)="onPathAdded($event)"></app-new-path>
+        </div>
+        <div>
+            <app-patients-paths ></app-patients-paths>
+        </div>
+    </div>
+</body>

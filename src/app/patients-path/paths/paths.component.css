@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+  
+  body {
+    margin: 0;
+  }
+  
+  /* Style the header */
+  .header {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Create three unequal columns that floats next to each other */
+  .column {
+    margin-left: 5%;
+    float: left;
+    position: relative;
+    top: 100px;
+  }
+  
+  /* Left and right column */
+  .column.right {
+    width: 25%;
+  }
+  
+  /* Middle column */
+  .column.left {
+    width: 65%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

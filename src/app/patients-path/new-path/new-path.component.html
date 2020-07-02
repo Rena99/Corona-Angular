@@ -1,32 +1,42 @@
-<html>
-    <app-title></app-title>
+<div style="text-align: center;">
+<div class="container" novalidate style="width: 100%; display: inline-block;" >
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(city.value, location.value)" class="form">
 
-    <body>
-        <form>
-            <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Start date">
-                <input matEndDate placeholder="End date">
-              </mat-date-range-input>
-              <mat-date-range-picker #picker></mat-date-range-picker>
-              
-        </form>
-        <h3 id="inputedPatientsID" [innerHTML]=patient.patientName></h3>
-        <table id="table">
-            <tr id="headerRow">
-                <th id="startDateHeader">Start Date</th>
-                <th id="endDateHeader">End Date</th>
-                <th id="cityHeader">City</th>
-                <th id="locationHeader">Location</th>
-                <th></th>
-            </tr>
-            <tr id="rowOfPathData">
-                <td><input id="startDate" #startDate class="input" type="datetime-local" [(ngModel)]="path.startDate"></td>
-                <td><input id="endDate" #endDate class="input" type="datetime-local" [(ngModel)]="path.endDate"></td>
-                <td><input id="city" #city class="input" type="text" [(ngModel)]="path.city"></td>
-                <td><input id="location" #location class="input" type="text" [(ngModel)]="path.locationC"></td>
-                <td class="button"><input id="addNewRow" type="button" value="Add" (click)="addANewObjectToPatientPathArray()"></td>
-            </tr>
-        </table>
-        <input id="switchPatient" type="button" value="Switch Patient" (click)="switchPatient()">
-    </body>
-</html>
+    <mat-form-field class="form-element">
+      <input matInput placeholder="City" formControlName="city" id="city" #city>
+      <mat-error *ngIf="!formGroup.controls['city'].valid && formGroup.controls['city'].touched">
+        Enter A City
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Location" formControlName="location" id="location" #location>
+      <mat-error *ngIf="!formGroup.controls['location'].valid && formGroup.controls['location'].touched">
+        Enter A Location
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input id="endDate" matStartDate formControlName="start" placeholder="Start date" >
+        <input id="endDate" matEndDate formControlName="end" placeholder="End date" >
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+      <mat-date-range-picker #picker ></mat-date-range-picker>
+      <mat-error *ngIf="!formGroup.controls['date'].valid && formGroup.controls['date'].touched">
+        Enter A Date
+      </mat-error>
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')" >
+        Invalid start date
+      </mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')" >
+        Invalid end date
+      </mat-error>
+    </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">
+        Add New Path
+      </button>
+
+  </form>
+</div>
+</div>
